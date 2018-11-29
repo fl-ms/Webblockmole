@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+<br>
+{% block app_content %}
+    <h2>Which address do you want to explore?</h2>
+    <br>
+    {% if form %}
+    
+    {{ wtf.quick_form(form, method="get")}}
+    <br>
+    {% endif %}
+{% endblock %}

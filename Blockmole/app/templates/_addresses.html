@@ -1,0 +1,46 @@
+
+<table class="table" style="width:100%">
+    <tr>    
+        <th>
+            #ID
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            No. of TX
+        </th>
+        <th>
+            Balance
+        </th>
+        <th>
+            Last TX
+        </th>
+        <th>
+            Comment
+        </th>
+    </tr>
+{% for address in addresses %}           
+    <tr>
+        <td>
+             {{ address.id }}
+        </td>
+        <td>
+            <a href="/blockexplorer/address/{{ address.address }}">{{ address.address }} </a>
+        </td>
+        <td>
+            {{ address.n_tx }}
+        </td>
+        <td>
+            {{ address.balance }}
+        </td>
+        <td>
+            {{ address.last_tx}}
+        </td>        
+        <td>
+            {{ address.comment }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+

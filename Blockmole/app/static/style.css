@@ -1,0 +1,56 @@
+#address-table:nth-child(odd) {background-color: #f2f2f2;}
+
+#content-blockexplorer {
+    -webkit-box-shadow: 3px 3px 3px rgb(184, 184, 184);
+    -moz-box-shadow:    3px 3px 3px rgb(184, 184, 184);
+    box-shadow:         3px 3px 3px rgb(184, 184, 184);
+    z-index:999;
+    background-color: rgb(250, 250, 250);
+    
+}
+
+#custom-nav {
+    -webkit-box-shadow: 3px 3px 3px rgb(184, 184, 184);
+    -moz-box-shadow:    3px 3px 3px rgb(184, 184, 184);
+    box-shadow:         3px 3px 3px rgb(184, 184, 184);
+    z-index:999;
+}
+
+#main-content-frame {
+    
+}
+
+html, body {
+    height:100%;
+    background-color: #f2f2f2;
+    font-size: 14px;
+    
+}
+
+#content-address-details {
+    -webkit-box-shadow: 3px 3px 3px rgb(184, 184, 184);
+    -moz-box-shadow:    3px 3px 3px rgb(184, 184, 184);
+    box-shadow:         3px 3px 3px rgb(184, 184, 184);
+    z-index:999;
+    background-color: rgb(250, 250, 250);
+}
+
+tr {
+    border-width: 0px;
+    border: 0px;
+    border-top: 0px;
+}
+
+#tx-details-header {
+    box-shadow: inset 0px 0px 15px rgba(255,255,255,15);
+    background-color: #f2f2f2;
+    border-width: 0px;
+
+}
+
+#tx-details-details {
+    box-shadow: inset 0px 0px 3px rgba(25,25,25,0.2);
+}
+
+
+

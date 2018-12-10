@@ -5,6 +5,7 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, \
     Length
 from app.models import User
 
+##############################
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -65,12 +66,24 @@ class PostForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-
 class AddAddressForm(FlaskForm):
     address = StringField('Add address here', validators=[DataRequired()])
     comment = StringField('Add comment here')
     submit = SubmitField('Submit')
     
+
 class ExploreAddressForm(FlaskForm):
     address = StringField('Add address here', validators=[DataRequired()])
-    #submit = SubmitField('Submit')
+    submit = SubmitField('Search')
+
+class MainSearchForm(FlaskForm):
+    address = StringField( validators=[DataRequired()])
+    
+
+class FollowAddressForm(FlaskForm):
+    track = SubmitField('Track')
+    untrack = SubmitField('Stop Tracking')
+
+
+class NewTxSeenForm(FlaskForm):
+    submit = SubmitField('Clear new transactions...')

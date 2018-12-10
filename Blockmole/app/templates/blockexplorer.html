@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
-<br>
+
 {% block app_content %}
+
+<div class="container-fluid" style="width: 99%" id="content-blockexplorer">
+    <div class="container-fluid">
+        <br>
     <h2>Which address do you want to explore?</h2>
     <br>
-    {% if form %}
-    
+    {% if form %}    
     {{ wtf.quick_form(form, method="get")}}
-    <br>
     {% endif %}
+    <br>
+</div>
+</div>
 {% endblock %}

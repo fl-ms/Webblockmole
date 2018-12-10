@@ -17,11 +17,14 @@
             Last TX
         </th>
         <th>
-            Comment
+            Date added
+        </th>
+        <th>
+            New TX?
         </th>
     </tr>
 {% for address in addresses %}           
-    <tr>
+    <tr id="address-table">
         <td>
              {{ address.id }}
         </td>
@@ -38,7 +41,12 @@
             {{ address.last_tx}}
         </td>        
         <td>
-            {{ address.comment }}
+            {{ address.date_added }}
+        </td>
+        <td>
+            {% if address.new_tx == 1 %}
+                <img src="{{ url_for('static', filename='images/images/haken.png') }}">
+            {% endif %}
         </td>
     </tr>
     {% endfor %}

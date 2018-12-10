@@ -6,15 +6,25 @@
     <div class="container-fluid">
         <br>
         {% if addresses %}
-        <h3>Your tracked addresses:</h3><br>
+        <table> 
+            <tr>
+                <td>
+                <h3>Addresses with new TXs:</h3><br></td>
+                <td>
+                    {% if form %}
+                    {{ wtf.quick_form(form, method="POST")}}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
 
-        {% include '_addresses.html' %}
-        
+    {% include '_newtxlist.html' %}
+    
         {% else %}
         <h3>Here seems to be nothing...</h3>
         <br>
         {% endif %}
-    <br>
+        <br>
     </div>
 </div>
 {% endblock %}

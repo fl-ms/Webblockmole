@@ -1,44 +1,70 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-<table class="table table-hover">
-        <tr style="width: 100%">
-            <td><h3>{{ address }}</h3></td>
-            <td></td>
-            <td>Hier könnte Ihr Submitbutton stehen</td>
-        </tr>
-        <tr>
-            <td> Balance: {{ balance }}</td>
-            <td> Number of TX: {{n_tx}}</td>
-            <td> Last TX: {{ last_tx }}</td>
-        </tr>
-</table>
-{% if transactions %}
-<table class="table">
-    <tr>
-        <th>Inputs</th>
-        <th></th>
-        <th>Outputs</th>
-        <th>Amount transferred</th>
-    </tr>
-    {% for tx in transactions %}
-    <tr>        
-        <td> {% for x in tx.inputs %} {% if x.address != address %}<a href="/blockexplorer/address/{{ x.address }}"> {% endif %}{{ x.address }}</a><br>{% endfor %} </td>
-        <td> {% set input_list = [] %}
-            {% for x in tx.inputs %} 
-            {{ input_list.append(x.address) or ''}}
-            {% endfor %}
-            {% if address in input_list %}<img src="{{ url_for('static', filename='images/images/arrow_right.png') }}"> {% else %}<img src="{{ url_for('static', filename='images/images/arrow_left.png') }}"> {% endif %}</td>
-        <td> {% for y in tx.outputs %} {% if y.address != address %} <a href="/blockexplorer/address/{{ y.address }}"> {% endif %} {{ y.address }}</a><br> {% endfor %}</td>
-        <td> {% for z in tx.outputs %} {{ z.value / 100000000 }}<br> {% endfor %}</td>
-    </tr>
-    {% endfor %}
+<div class="container-fluid" style="width: 29%; float: left" id="content-address-details">
+    <table class="table table-bordered">
+                <tr>
+                <td colspan="2" style="text-align: left">
+                    <b>{{ address }}</b>
+                </td>
+                <td style="text-align: right">
+                    <span><div class="container" style="float: right; height: 30px; width: 120px; text-align: center; vertical-align: middle; border: 1px; border-color: grey; background-color: grey; border-radius: 10px">
+                        {% if not current_user.is_tracking_address(addressobj) %}
+                        <p><a href="{{ url_for('track_address', addresse=address) }}" style="text-align: center; vertical-align: middle; color: white">Follow</a></p>
+                        {% else %}
+                        <p><a href="{{ url_for('untrack_address', addresse=address) }}" style="text-align: center; vertical-align: middle;color: white">Unfollow</a></p>
+                        {% endif %}
+                    </div></span>
+                </td>
+                </tr>
+                <br>
+                <tr>
+                    <td style="text-align: left"> Balance: {{ balance }}</td>
+                    <td> Number of TX: {{n_tx}}</td>
+                    <td style="text-align: right"> Last TX: {{ last_tx }}</td>
+                </tr>
+            </table>
+    
+
+</div>
+<div class="container-fluid" style="width: 70%; float: right" id="content-address-details">
+    <div class="container-fluid">
+    <br>
         
-</table>
-{% else %}
-<br><br><center>
-    <h2>No transactions so far...</h2>
-</center>
-{% endif %}
-        
+        {% if transactions %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Inputs</th>
+                <th></th>
+                <th>Outputs</th>
+                <th style="text-align:right">Amount transferred</th>
+            </tr>
+            </thead>
+        {% for tx in transactions %}
+            <tr id="tx-details-header">
+                <td colspan="2">{{ tx.hash }}</td>
+                <td colspan="2" style="text-align: right">{{ tx.time }}</td>
+            </tr>
+            <tr id="tx-details-details">        
+                <td> {% for x in tx.inputs %} {% if x.address != address %}<a href="/blockexplorer/address/{{ x.address }}"> {% endif %}{{ x.address }}</a><br>{% endfor %} </td>
+                <td> {% set input_list = [] %}
+                    {% for x in tx.inputs %} 
+                    {{ input_list.append(x.address) or ''}}
+                    {% endfor %}
+                    {% if address in input_list %}<img src="{{ url_for('static', filename='images/images/arrow_right.png') }}"> {% else %}<img src="{{ url_for('static', filename='images/images/arrow_left.png') }}"> {% endif %}</td>
+                <td> {% for y in tx.outputs %} {% if y.address != address %} <a href="/blockexplorer/address/{{ y.address }}"> {% endif %} {{ y.address }}</a><br> {% endfor %}</td>
+                <td style="text-align: right"> {% for z in tx.outputs %}  {{ z.value / 100000000 }}<br> {% endfor %}<br> </td>
+            </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+            <br><br>
+        <center>
+            <h3>No transactions so far...</h3>
+            <br>
+        </center>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

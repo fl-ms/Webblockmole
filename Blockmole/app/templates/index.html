@@ -2,6 +2,9 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+<div class="container-fluid" style="width: 99%" id="content-blockexplorer">
+        <div class="container-fluid">
+            <br>
     <h1>Hi, {{ current_user.username }}!</h1>
     {% if form %}
     {{ wtf.quick_form(form) }}
@@ -24,4 +27,7 @@
             </li>
         </ul>
     </nav>
+    <br>
+    </div></div>
+
 {% endblock %}
